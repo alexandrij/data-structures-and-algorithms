@@ -1,0 +1,23 @@
+{
+  "name": "data-structures-and-algorithms",
+  "version": "1.0.0",
+  "description": "Структуры данных и алгоритмы",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "tslint -p ./tsconfig.tslint.json ./src/**/*.ts",
+    "test": "ts-node --project=./tsconfig.spec.json ./node_modules/.bin/jasmine ./src/**/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jasmine": "^3.4.1",
+    "@types/node": "^12.7.8",
+    "jasmine": "^3.5.0",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  }
+}
