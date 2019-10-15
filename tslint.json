@@ -1,0 +1,17 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "rules": {
+        "no-shadowed-variable": false,
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ]
+    }
+}
