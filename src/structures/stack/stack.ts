@@ -1,5 +1,3 @@
-import {strict} from 'assert';
-
 export class Stack<T> {
   public readonly data: object = {};
 
@@ -23,7 +21,7 @@ export class Stack<T> {
     return value;
   }
 
-  public peek(): T {
+  public peek(): T|undefined {
     return this.data[this.length - 1];
   }
 

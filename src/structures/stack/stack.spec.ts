@@ -14,7 +14,7 @@ describe('Data structures: Stack', () => {
   });
 
   it('should pop element from stack', () => {
-    const stack = new Stack();
+    const stack = new Stack<number>();
     stack.push(1);
     stack.push(2);
     stack.push(3);
@@ -25,7 +25,7 @@ describe('Data structures: Stack', () => {
     expect(stack.pop()).toBeUndefined();
 
     expect(stack.toString()).toBe('');
-    expect(stack.peek()).toBe(undefined);
+    expect(stack.peek()).toBeUndefined();
     expect(stack.length).toBe(0);
   });
 });
