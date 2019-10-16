@@ -32,8 +32,8 @@ export class LinkedList {
     this._length++;
   }
 
-  public remove(value: any): void {
-    let previuosNode: LinkedNode;
+  public remove(value: any): LinkedNode|undefined {
+    let removedNode: LinkedNode|undefined;
     let currentNode = this._head;
 
     if (!currentNode) {
@@ -41,18 +41,30 @@ export class LinkedList {
     }
 
     if (currentNode.value === value) {
+      removedNode = currentNode;
       this._head = currentNode.next;
     } else {
-      while (currentNode.next) {
-        previuosNode = currentNode;
-        currentNode = currentNode.next;
-
-        if (currentNode.value === value) {
-          previuosNode.next = currentNode.next;
+      while (currentNode.next && !removedNode) {
+        if (currentNode.next.value === value) {
+          removedNode = currentNode.next;
+          currentNode.next = currentNode.next.next;
+        } else {
+          currentNode = currentNode.next;
         }
       }
     }
     this._length--;
+    return removedNode;
+  }
+
+  public removeHead(): LinkedNode|undefined {
+    const removedHead = this._head;
+
+    if (removedHead) {
+      this._head = removedHead.next;
+      this._length--;
+    }
+    return removedHead;
   }
 
   public toArray(): any {
@@ -66,7 +78,20 @@ export class LinkedList {
     return values;
   }
 
-  public toString(): string {
-    return this.toArray().toString();
+  public toString(callback: (value: any) => string = (v: any) => String(v)):
+      string {
+    let str = '';
+    let i = 0;
+    let currentNode = this._head;
+
+    while (currentNode) {
+      if (i > 0) {
+        str += ',';
+      }
+      str += callback(currentNode.value);
+      currentNode = currentNode.next;
+      i++;
+    }
+    return str;
   }
 }
