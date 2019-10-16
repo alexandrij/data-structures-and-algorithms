@@ -4,6 +4,7 @@
         "tslint:recommended"
     ],
     "rules": {
+        "variable-name": false,
         "no-shadowed-variable": false,
         "quotemark": [
             true,
