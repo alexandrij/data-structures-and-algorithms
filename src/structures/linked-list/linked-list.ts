@@ -1,9 +1,9 @@
-export interface LinkedNode {
-  next?: LinkedNode;
-  value: any;
+export interface LinkedNode<T = any> {
+  next?: LinkedNode<T>;
+  value: T;
 }
 
-export class LinkedList {
+export class LinkedList<T = any> {
   get head(): LinkedNode|undefined {
     return this._head;
   }
@@ -14,7 +14,7 @@ export class LinkedList {
   }
   private _length: number = 0;
 
-  public add(value: any): void {
+  public add(value: T): void {
     const node: LinkedNode = {
       next: undefined,
       value,
@@ -32,7 +32,7 @@ export class LinkedList {
     this._length++;
   }
 
-  public remove(value: any): LinkedNode|undefined {
+  public remove(value: T): LinkedNode|undefined {
     let removedNode: LinkedNode|undefined;
     let currentNode = this._head;
 
@@ -67,17 +67,6 @@ export class LinkedList {
     return removedHead;
   }
 
-  public toArray(): any {
-    const values: any[] = [];
-    let currentNode = this._head;
-
-    while (currentNode) {
-      values.push(currentNode.value);
-      currentNode = currentNode.next;
-    }
-    return values;
-  }
-
   public toString(callback: (value: any) => string = (v: any) => String(v)):
       string {
     let str = '';
@@ -94,4 +83,5 @@ export class LinkedList {
     }
     return str;
   }
+
 }

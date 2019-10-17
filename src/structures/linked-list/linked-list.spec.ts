@@ -2,7 +2,7 @@ import {LinkedList} from './linked-list';
 
 describe('Data structure: LinkedList', () => {
   it('should add node to linked list', () => {
-    const list = new LinkedList();
+    const list = new LinkedList<number>();
 
     list.add(1);
     list.add(2);
