@@ -13,7 +13,7 @@ describe('Data structure: Queue', () => {
   });
 
   it('should dequeue from queue', () => {
-    const queue = new Queue();
+    const queue = new Queue<number>();
 
     queue.enqueue(1);
     queue.enqueue(2);
