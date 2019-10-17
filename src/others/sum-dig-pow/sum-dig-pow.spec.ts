@@ -1,4 +1,3 @@
-// import 'jasmine';
 import {sumDigPow} from './sum-dig-pow';
 
 describe(
