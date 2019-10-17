@@ -6,22 +6,23 @@ export class Stack<T> {
   }
   private _length: number = 0;
 
-  public push(value: T): void {
+  public push(value: T): T {
     this.data[this.length] = value;
     this._length++;
+    return value;
   }
 
-  public pop(): T|undefined {
-    let value: T|undefined;
+  public pop(): T {
+    const value = this.peek();
 
     if (this._length > 0) {
+      delete this.data[this._length - 1];
       this._length--;
-      value = this.data[this._length];
     }
     return value;
   }
 
-  public peek(): T|undefined {
+  public peek(): T {
     return this.data[this.length - 1];
   }
 
