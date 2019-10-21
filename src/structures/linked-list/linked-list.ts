@@ -9,6 +9,11 @@ export class LinkedList<T = any> {
   }
   private _head?: LinkedNode;
 
+  get tail(): LinkedNode|undefined {
+    return this._tail;
+  }
+  private _tail?: LinkedNode;
+
   get size(): number {
     return this._size;
   }
@@ -29,6 +34,7 @@ export class LinkedList<T = any> {
       }
       parent.next = node;
     }
+    this._tail = node;
     this._size++;
   }
 
@@ -53,7 +59,13 @@ export class LinkedList<T = any> {
         }
       }
     }
+
     this._size--;
+
+    if (this._tail === removedNode) {
+      this._tail = currentNode.next;
+    }
+
     return removedNode;
   }
 
@@ -63,6 +75,10 @@ export class LinkedList<T = any> {
     if (removedHead) {
       this._head = removedHead.next;
       this._size--;
+
+      if (removedHead === this._tail) {
+        this._tail = removedHead.next;
+      }
     }
     return removedHead;
   }
