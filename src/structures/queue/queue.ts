@@ -1,6 +1,6 @@
 import {LinkedList} from '../linked-list/linked-list';
 
-export default class Queue<T> {
+export class Queue<T> {
   public readonly data: LinkedList = new LinkedList<T>();
 
   get size(): number {
