@@ -1,5 +1,5 @@
 export class Stack<T> {
-  public readonly data: object = {};
+  public readonly data: object = Object.create(null);
 
   get size(): number {
     return this._size;
