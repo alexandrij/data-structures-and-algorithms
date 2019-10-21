@@ -8,7 +8,7 @@ describe('Data structure: Queue', () => {
     queue.enqueue(2);
     queue.enqueue(3);
 
-    expect(queue.length).toBe(3);
+    expect(queue.size).toBe(3);
     expect(queue.toString()).toBe('1,2,3');
   });
 

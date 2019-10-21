@@ -18,7 +18,7 @@ describe('Data structures: Stack', () => {
     stack.push(2);
     stack.push(3);
 
-    expect(stack.length).toBe(3);
+    expect(stack.size).toBe(3);
     expect(stack.toString()).toBe('1,2,3');
   });
 
@@ -35,6 +35,6 @@ describe('Data structures: Stack', () => {
 
     expect(stack.toString()).toBe('');
     expect(stack.peek()).toBeUndefined();
-    expect(stack.length).toBe(0);
+    expect(stack.size).toBe(0);
   });
 });

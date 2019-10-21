@@ -9,10 +9,10 @@ export class LinkedList<T = any> {
   }
   private _head?: LinkedNode;
 
-  get length(): number {
-    return this._length;
+  get size(): number {
+    return this._size;
   }
-  private _length: number = 0;
+  private _size: number = 0;
 
   public add(value: T): void {
     const node: LinkedNode = {
@@ -29,7 +29,7 @@ export class LinkedList<T = any> {
       }
       parent.next = node;
     }
-    this._length++;
+    this._size++;
   }
 
   public remove(value: T): LinkedNode|undefined {
@@ -53,7 +53,7 @@ export class LinkedList<T = any> {
         }
       }
     }
-    this._length--;
+    this._size--;
     return removedNode;
   }
 
@@ -62,7 +62,7 @@ export class LinkedList<T = any> {
 
     if (removedHead) {
       this._head = removedHead.next;
-      this._length--;
+      this._size--;
     }
     return removedHead;
   }
@@ -83,5 +83,4 @@ export class LinkedList<T = any> {
     }
     return str;
   }
-
 }
