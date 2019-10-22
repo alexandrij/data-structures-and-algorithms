@@ -140,6 +140,15 @@ export class Map<K, V> {
     return true;
   }
 
+  public forEach(callback: (key: K, value: V) => void): void {
+     let entry = this.head;
+
+     while ((entry instanceof MapEntry)) {
+       callback(entry.key, entry.value);
+       entry = entry.next;
+     }
+  }
+
   private hash(key: K): string|null {
     const strKey = String(key);
     if (key === undefined || key === null) {

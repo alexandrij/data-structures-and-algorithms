@@ -25,4 +25,8 @@ describe('Data-structures: Map', () => {
 
     expect(dictionary.size).toBe(2);
   });
+
+  it('should set, read, delete value', () => {
+    const dictionary = new Map();
+  });
 });
