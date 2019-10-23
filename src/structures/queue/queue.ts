@@ -1,7 +1,7 @@
 import {LinkedList} from '../linked-list/linked-list';
 
 export class Queue<T> {
-  public readonly data: LinkedList = new LinkedList<T>();
+  private data: LinkedList = new LinkedList<T>();
 
   get size(): number {
     return this.data.size;
