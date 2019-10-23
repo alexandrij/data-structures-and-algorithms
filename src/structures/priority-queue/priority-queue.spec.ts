@@ -11,7 +11,7 @@ describe('Data structure: PriorityQueue', () => {
     queue.enqueue(4);
 
     expect(queue.size).toBe(6);
-    expect(queue.peek()).toBe(1);
+    expect(queue.peek()).toBe(4);
 
     expect(queue.dequeue()).toBe(1);
     expect(queue.dequeue()).toBe(2);

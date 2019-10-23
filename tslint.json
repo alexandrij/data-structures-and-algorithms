@@ -4,15 +4,22 @@
         "tslint:recommended"
     ],
     "rules": {
-        "variable-name": false,
-        "no-shadowed-variable": false,
-        "quotemark": [
-            true,
-            "single"
-        ],
         "interface-name": [
             true,
             "never-prefix"
-        ]
+        ],
+        "no-shadowed-variable": false,
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+          ],
+        "triple-equals": [false, "allow-null-check"],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "check-format",
+            "allow-leading-underscore"
+          ]
     }
 }

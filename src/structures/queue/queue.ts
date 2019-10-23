@@ -1,22 +1,22 @@
 import {LinkedList} from '../linked-list/linked-list';
 
 export class Queue<T> {
-  private data: LinkedList = new LinkedList<T>();
+  private _data: LinkedList = new LinkedList<T>();
 
   get size(): number {
-    return this.data.size;
+    return this._data.size;
   }
 
   public enqueue(value: T) {
-    this.data.add(value);
+    this._data.add(value);
   }
 
   public dequeue(): T|undefined {
-    const node = this.data.removeHead();
+    const node = this._data.removeHead();
     return node ? node.value : undefined;
   }
 
   public toString(callback?: ((value: T) => string)): string {
-    return this.data.toString(callback);
+    return this._data.toString(callback);
   }
 }

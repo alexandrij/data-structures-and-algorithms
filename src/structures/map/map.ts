@@ -6,7 +6,7 @@ interface MapCollection<K, V> {
 }
 
 export class Map<K, V> {
-  private data: MapCollection<K, V> = Object.create({
+  private _data: MapCollection<K, V> = Object.create({
     objects: [],
     primitives: Object.create(null),
   });
@@ -16,104 +16,104 @@ export class Map<K, V> {
   }
   private _size: number = 0;
 
-  private head?: MapEntry<K, V>;
+  private _head?: MapEntry<K, V>;
 
-  private tail?: MapEntry<K, V>;
+  private _tail?: MapEntry<K, V>;
 
-  private objectHash: symbol = Symbol('Hash(map)');
+  private _objectHash: symbol = Symbol('Hash(map)');
 
   public set(key: K, value: V): void {
-    const keyHash = this.hash(key);
+    const keyHash = this._hash(key);
     let entry: MapEntry<K, V>;
-    const objectHash = this.objectHash;
+    const objectHash = this._objectHash;
 
     if (keyHash === null) {
       if (typeof key[objectHash] === 'number' &&
-          this.data.objects[key[objectHash]] instanceof MapEntry) {
-        entry = this.data.objects[key[objectHash]];
+          this._data.objects[key[objectHash]] instanceof MapEntry) {
+        entry = this._data.objects[key[objectHash]];
         entry.value = value;
         return;
       }
 
       entry = new MapEntry(key, value);
-      this.data.objects.push(entry);
+      this._data.objects.push(entry);
       this._size++;
 
       Object.defineProperty(key, objectHash, {
         configurable: true,
-        value: this.data.objects.length - 1,
+        value: this._data.objects.length - 1,
       });
     } else {
-      if (this.data.primitives[keyHash]) {
-        this.data.primitives[keyHash] = value;
+      if (this._data.primitives[keyHash]) {
+        this._data.primitives[keyHash] = value;
         return;
       }
 
       entry = new MapEntry(key, value);
-      this.data.primitives[keyHash] = entry;
+      this._data.primitives[keyHash] = entry;
       this._size++;
     }
 
-    if (!this.head) {
-      this.head = entry;
+    if (!this._head) {
+      this._head = entry;
     }
 
-    if (!this.tail) {
-      this.tail = this.head;
+    if (!this._tail) {
+      this._tail = this._head;
     } else {
-      this.tail.next = entry;
-      entry.prev = this.tail;
-      this.tail = entry;
+      this._tail.next = entry;
+      entry.prev = this._tail;
+      this._tail = entry;
     }
   }
 
   public get(key: K): V|undefined {
-    const keyHash = this.hash(key);
-    const objectHash = this.objectHash;
+    const keyHash = this._hash(key);
+    const objectHash = this._objectHash;
 
     if (keyHash === null) {
       if (typeof key[objectHash] === 'number' &&
-          this.data.objects[key[objectHash]] instanceof MapEntry) {
-        return this.data.objects[key[objectHash]].value;
+          this._data.objects[key[objectHash]] instanceof MapEntry) {
+        return this._data.objects[key[objectHash]].value;
       }
     } else {
-      if (this.data.primitives[keyHash] instanceof MapEntry) {
-        return this.data.primitives[keyHash].value;
+      if (this._data.primitives[keyHash] instanceof MapEntry) {
+        return this._data.primitives[keyHash].value;
       }
     }
   }
 
   public has(key: K): boolean {
-    const keyHash = this.hash(key);
-    const objectHash = this.objectHash;
+    const keyHash = this._hash(key);
+    const objectHash = this._objectHash;
 
     if (keyHash === null) {
       return (
           typeof key[objectHash] === 'number' &&
-          this.data.objects[key[objectHash]] instanceof MapEntry);
+          this._data.objects[key[objectHash]] instanceof MapEntry);
     } else {
-      return (this.data.primitives[keyHash] instanceof MapEntry);
+      return (this._data.primitives[keyHash] instanceof MapEntry);
     }
   }
 
   public delete(key: K): boolean {
-    const keyHash = this.hash(key);
-    const objectHash = this.objectHash;
+    const keyHash = this._hash(key);
+    const objectHash = this._objectHash;
     let entry: MapEntry<K, V>;
 
     if (keyHash === null) {
       if (typeof key[objectHash] === 'number' &&
-          this.data.objects[key[objectHash]] instanceof MapEntry) {
-        entry = this.data.objects[key[objectHash]];
-        delete this.data.objects[key[objectHash]];
+          this._data.objects[key[objectHash]] instanceof MapEntry) {
+        entry = this._data.objects[key[objectHash]];
+        delete this._data.objects[key[objectHash]];
         delete entry.key[objectHash];
       } else {
         return false;
       }
     } else {
-      if (this.data.primitives[keyHash] instanceof MapEntry) {
-        entry = this.data.primitives[keyHash];
-        delete this.data.primitives[keyHash];
+      if (this._data.primitives[keyHash] instanceof MapEntry) {
+        entry = this._data.primitives[keyHash];
+        delete this._data.primitives[keyHash];
       } else {
         return false;
       }
@@ -125,23 +125,23 @@ export class Map<K, V> {
       entry.prev = undefined;
       entry.next = undefined;
     } else if (!entry.prev && entry.next) {
-      this.head = entry.next;
-      this.head.prev = undefined;
+      this._head = entry.next;
+      this._head.prev = undefined;
       entry.next = undefined;
     } else if (entry.prev && !entry.next) {
-      this.tail = entry.prev;
-      this.tail.next = undefined;
+      this._tail = entry.prev;
+      this._tail.next = undefined;
       entry.prev = undefined;
     } else {
-      this.head = undefined;
-      this.tail = undefined;
+      this._head = undefined;
+      this._tail = undefined;
     }
     this._size--;
     return true;
   }
 
   public forEach(callback: (key: K, value: V) => void): void {
-     let entry = this.head;
+     let entry = this._head;
 
      while ((entry instanceof MapEntry)) {
        callback(entry.key, entry.value);
@@ -149,7 +149,7 @@ export class Map<K, V> {
      }
   }
 
-  private hash(key: K): string|null {
+  private _hash(key: K): string|null {
     const strKey = String(key);
     if (key === undefined || key === null) {
       return `I___${strKey}`;
