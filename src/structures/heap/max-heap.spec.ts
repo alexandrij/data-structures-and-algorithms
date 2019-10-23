@@ -24,6 +24,9 @@ describe('Data structure: MaxHeap', () => {
     expect(heap.toString()).toBe('6,4,5,1,3,2,5');
 
     heap.remove(6);
+    expect(heap.toString()).toBe('5,4,5,1,3,2');
 
+    heap.remove(5);
+    expect(heap.toString()).toBe('4,3,2,1');
   });
 });

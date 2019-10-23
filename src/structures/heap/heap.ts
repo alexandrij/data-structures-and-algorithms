@@ -1,6 +1,10 @@
 export abstract class Heap<T> {
   protected heap: T[] = [];
 
+  get size(): number {
+    return this.heap.length;
+  }
+
   public peek(): T|undefined {
     return this.heap[this.heap.length - 1];
   }
@@ -16,7 +20,7 @@ export abstract class Heap<T> {
 
     while (i < this.heap.length) {
       if (this.heap[i] === item) {
-        if (this.heap.length > 1) {
+        if (this.heap.length === 1 || i === this.heap.length - 1) {
           this.heap.pop();
         } else {
           this.heap[i] = this.heap[this.heap.length - 1];
@@ -32,6 +36,7 @@ export abstract class Heap<T> {
             this.heapifyUp(i);
           }
           i = 0;
+          continue;
         }
       }
       i++;
@@ -40,7 +45,7 @@ export abstract class Heap<T> {
   }
 
   public poll(): T|undefined {
-    if (this.heap.length > 2) {
+    if (this.heap.length > 1) {
       const item = this.heap[0];
       this.heap[0] = this.heap[this.heap.length - 1];
       this.heap.pop();
