@@ -27,7 +27,6 @@ const memoize = (callback, limit) => {
             cached.result = result;
             cached.start = Date.now();
         }
-        console.log(cached);
         return result;
     };
 };
@@ -40,5 +39,4 @@ memoized()
     .then(data2 => console.log(data2)) // получаем быстро, из кеша
     .then(memoized)
     .then(data3 => console.log(data3))
-    .catch(e => console.log(e))
-    .then();
+    .catch(e => console.log(e));
