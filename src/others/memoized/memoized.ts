@@ -6,32 +6,31 @@ const getData = () => {
 
 const memoize = (callback, limit) => {
     const cached = {
+        moment: undefined,
         result: undefined,
-        start: undefined,
         ...limit,
     };
 
-    cached.limit = limit;
     return async (...args) => {
         const now = Date.now();
         let result;
 
         if (
             typeof cached.result !== 'undefined' &&
-            typeof cached.start === 'number' &&
-            (now - cached.start) < limit
+            typeof cached.moment === 'number' &&
+            (now - cached.moment) > limit
         ) {
             result = cached.result;
         } else {
             result = await callback(...args);
             cached.result = result;
-            cached.start = Date.now();
+            cached.moment = Date.now();
         }
         return result;
     };
 };
 
-let memoized = memoize(getData, 1000);
+let memoized = memoize(getData, 100);
 
 memoized()
     .then(data1 => console.log(data1)) // получаем долго
