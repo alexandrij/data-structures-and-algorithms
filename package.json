@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Структуры данных и алгоритмы",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
     "lint": "tslint -p ./tsconfig.tslint.json ./src/**/*.ts",
-    "test": "ts-node --project=./tsconfig.spec.json ./node_modules/.bin/jasmine **/*.spec.ts",
-    "memoized": "ts-node ./src/others/memoized/memoized.ts"
+    "test": "ts-node --project=./tsconfig.spec.json ./node_modules/.bin/jasmine **/*.spec.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "@types/node": "^14.14.10",
     "jasmine": "^3.6.3",
     "jasmine-spec-reporter": "^6.0.0",
-    "ts-node": "^8.4.1",
+    "ts-node": "^8.10.2",
     "tslint": "^5.20.0",
     "typescript": "^3.9.7"
   }
