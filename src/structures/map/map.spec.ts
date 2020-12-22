@@ -1,3 +1,4 @@
+import 'jasmine';
 import {Map} from './map';
 
 describe('Data-structures: Map', () => {

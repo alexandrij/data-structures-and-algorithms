@@ -1,3 +1,4 @@
+import 'jasmine';
 import {LinkedList} from './linked-list';
 
 describe('Data structure: LinkedList', () => {
