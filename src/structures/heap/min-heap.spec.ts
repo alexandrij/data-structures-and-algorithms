@@ -1,4 +1,3 @@
-import 'jasmine';
 import {MinHeap} from './min-heap';
 
 describe('Data structure: MinHeap', () => {

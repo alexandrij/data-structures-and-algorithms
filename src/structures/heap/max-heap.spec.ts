@@ -1,4 +1,3 @@
-import 'jasmine';
 import {MaxHeap} from './max-heap';
 
 describe('Data structure: MaxHeap', () => {

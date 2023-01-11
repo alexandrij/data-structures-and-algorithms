@@ -1,6 +1,4 @@
-import 'jasmine';
 import { memoize } from './memoize';
-import {cached} from './memoize';
 
 describe('Algoritms: memoize', () => {
     it('memoized factorial', () => {

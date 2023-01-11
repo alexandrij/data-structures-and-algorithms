@@ -1,0 +1,27 @@
+{
+  "preset": "ts-jest",
+  "rootDir": ".",
+  "testMatch": [
+    "<rootDir>/src/**/(*.)spec.(ts|js)"
+  ],
+  "moduleFileExtensions": [
+    "ts",
+    "js",
+    "json"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "transform": {
+    "^.+\\.(ts)$": [
+      "ts-jest",
+      {
+        "useESM": true
+      }
+    ]
+  },
+  "transformIgnorePatterns": [
+    "<rootDir>/node_modules/(?!(ol|lodash-es)/).+\\.js$"
+  ]
+}

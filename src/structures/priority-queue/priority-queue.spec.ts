@@ -1,4 +1,4 @@
-import 'jasmine';
+
 import {PriorityQueue} from './priority-queue';
 
 describe('Data structure: PriorityQueue', () => {

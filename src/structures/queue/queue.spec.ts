@@ -1,4 +1,3 @@
-import 'jasmine';
 import {Queue} from './queue';
 
 describe('Data structure: Queue', () => {

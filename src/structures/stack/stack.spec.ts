@@ -1,4 +1,3 @@
-import 'jasmine';
 import {Stack} from './stack';
 
 describe('Data structures: Stack', () => {

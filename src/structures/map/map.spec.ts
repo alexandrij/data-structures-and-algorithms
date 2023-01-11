@@ -1,10 +1,9 @@
-import 'jasmine';
 import {Map} from './map';
 
 describe('Data-structures: Map', () => {
   it('should set, read, delete value', () => {
     const dictionary = new Map();
-    const objKey = { a: 'aaa' };
+    const objKey = {a: 'aaa'};
     const summ = (a, b) => a + b;
 
     dictionary.set(1, 'key-1');
