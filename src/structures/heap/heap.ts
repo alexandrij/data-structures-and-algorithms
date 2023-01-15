@@ -5,7 +5,7 @@ export abstract class Heap<T> {
     return this.heap.length;
   }
 
-  public peek(): T|undefined {
+  public peek(): T | undefined {
     return this.heap[this.heap.length - 1];
   }
 
@@ -28,9 +28,7 @@ export abstract class Heap<T> {
 
           const parentItem = this.heap[this.getParentIndex(i)];
 
-          if (this.hasLeftChild(i) &&
-              (!parentItem ||
-               this.pairIsInCorrectOrder(parentItem, this.heap[i]))) {
+          if (this.hasLeftChild(i) && (!parentItem || this.pairIsInCorrectOrder(parentItem, this.heap[i]))) {
             this.heapifyDown(i);
           } else {
             this.heapifyUp(i);
@@ -44,7 +42,7 @@ export abstract class Heap<T> {
     return this;
   }
 
-  public poll(): T|undefined {
+  public poll(): T | undefined {
     if (this.heap.length > 1) {
       const item = this.heap[0];
       this.heap[0] = this.heap[this.heap.length - 1];
@@ -69,11 +67,11 @@ export abstract class Heap<T> {
   }
 
   protected getLeftChildIndex(parentIndex: number): number {
-    return (parentIndex * 2) + 1;
+    return parentIndex * 2 + 1;
   }
 
   protected getRightChildIndex(parentIndex: number): number {
-    return (parentIndex * 2) + 2;
+    return parentIndex * 2 + 2;
   }
 
   protected hasLeftChild(parentIndex: number): boolean {
@@ -87,32 +85,32 @@ export abstract class Heap<T> {
   protected heapifyUp(startIndex?: number): void {
     let currentIndex = startIndex || this.heap.length - 1;
 
-    while (this.hasParent(currentIndex) &&
-           !this.pairIsInCorrectOrder(
-               this.heap[this.getParentIndex(currentIndex)],
-               this.heap[currentIndex])) {
+    while (
+      this.hasParent(currentIndex) &&
+      !this.pairIsInCorrectOrder(this.heap[this.getParentIndex(currentIndex)], this.heap[currentIndex])
+    ) {
       this.swap(this.getParentIndex(currentIndex), currentIndex);
       currentIndex = this.getParentIndex(currentIndex);
     }
   }
 
-  protected heapifyDown(startIndex: number = 0): void {
+  protected heapifyDown(startIndex = 0): void {
     let currentIndex = startIndex;
     let nextIndex: number;
 
     while (this.hasLeftChild(currentIndex)) {
-      if (this.hasRightChild(currentIndex) &&
-          this.pairIsInCorrectOrder(
-              this.heap[this.getRightChildIndex(currentIndex)],
-              this.heap[this.getLeftChildIndex(currentIndex)])) {
+      if (
+        this.hasRightChild(currentIndex) &&
+        this.pairIsInCorrectOrder(
+          this.heap[this.getRightChildIndex(currentIndex)],
+          this.heap[this.getLeftChildIndex(currentIndex)],
+        )
+      ) {
         nextIndex = this.getRightChildIndex(currentIndex);
       } else {
         nextIndex = this.getLeftChildIndex(currentIndex);
       }
-      if (this.pairIsInCorrectOrder(
-              this.heap[currentIndex],
-              this.heap[nextIndex],
-              )) {
+      if (this.pairIsInCorrectOrder(this.heap[currentIndex], this.heap[nextIndex])) {
         break;
       }
       this.swap(currentIndex, nextIndex);
@@ -121,8 +119,7 @@ export abstract class Heap<T> {
   }
 
   protected swap(index1: number, index2: number): void {
-    [this.heap[index1], this.heap[index2]] =
-        [this.heap[index2], this.heap[index1]];
+    [this.heap[index1], this.heap[index2]] = [this.heap[index2], this.heap[index1]];
   }
 
   protected abstract pairIsInCorrectOrder(parent: T, child: T): boolean;

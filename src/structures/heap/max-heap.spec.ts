@@ -1,4 +1,4 @@
-import {MaxHeap} from './max-heap';
+import { MaxHeap } from './max-heap';
 
 describe('Data structure: MaxHeap', () => {
   it('should add, remove and poll element to heap', () => {

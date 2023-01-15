@@ -7,39 +7,44 @@
  * Если игнорируемый вызов оказался последним, то он должен выполниться.
  */
 
-function f(a) {
-    // @ts-ignore
+class Foo {
+  constructor(private b = '') {}
+
+  concat(a) {
     console.log(a + this.b);
+  }
 }
 
+const foo = new Foo(' call');
+
 // затормозить функцию до одного раза в 1000 мс
-const f1000 = throttle(f, 1000, { b: ' call' });
+const f1000 = throttle(foo.concat, 1000, foo);
 f1000(1); // выведет 1 call
 f1000(2); // (тормозим, не прошло 1000 мс)
 f1000(3); // (тормозим, не прошло 1000 мс)
 f1000(4); // (тормозим, не прошло 1000 мс)
 f1000(5); // (тормозим, не прошло 1000 мс)
 
-function throttle(fn: (...args) => void, delay: number, ctx: any) {
-    let lastArgs: any;
-    let trottled: boolean = false;
+function throttle(fn: (...args: any[]) => void, delay: number, ctx?: unknown) {
+  let lastArgs: unknown[] | undefined;
+  let trottled = false;
 
-    return (...args): void => {
-        if (trottled) {
-            lastArgs = args;
-            return;
-        }
-
-        fn.call(ctx, ...args);
-
-        trottled = true;
-
-        setTimeout(() => {
-            trottled = false;
-            if (lastArgs) {
-                fn.call(ctx, ...lastArgs);
-                lastArgs = undefined;
-            }
-        }, delay);
+  return (...args: any[]): void => {
+    if (trottled) {
+      lastArgs = args;
+      return;
     }
+
+    fn.call(ctx, ...args);
+
+    trottled = true;
+
+    setTimeout(() => {
+      trottled = false;
+      if (lastArgs) {
+        fn.call(ctx, ...lastArgs);
+        lastArgs = undefined;
+      }
+    }, delay);
+  };
 }

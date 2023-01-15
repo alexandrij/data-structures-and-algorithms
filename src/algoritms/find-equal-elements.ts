@@ -1,17 +1,17 @@
-const findEqualElements = <T = any>(input1: T[], input2: T[]): T[] => {
-    const mapInput1 = input1.reduce((map, el) => {
-        let count: number = map.get(el) || 0;
-        return map.set(el, ++count);
-    }, new Map<T, number>());
+const findEqualElements = <T>(input1: T[], input2: T[]): T[] => {
+  const mapInput1 = input1.reduce((map, el) => {
+    let count: number = map.get(el) || 0;
+    return map.set(el, ++count);
+  }, new Map<T, number>());
 
-    return input2.filter(el => {
-        const countEl = mapInput1.get(el) as number;
-        if (countEl > 0) {
-            mapInput1.set(el, countEl - 1);
-            return true;
-        }
-        return false;
-    });
+  return input2.filter((el) => {
+    const countEl = mapInput1.get(el) as number;
+    if (countEl > 0) {
+      mapInput1.set(el, countEl - 1);
+      return true;
+    }
+    return false;
+  });
 };
 
 // Примеры

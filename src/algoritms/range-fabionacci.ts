@@ -1,12 +1,16 @@
 export function rangeFabionacci(input: number): number[] {
-    if (input < 1 ) { return []; }
-    if (input === 1) { return [0]; }
+  if (input < 1) {
+    return [];
+  }
+  if (input === 1) {
+    return [0];
+  }
 
-    const res: number[] = [0, 1];
-    for (let i = 2; i <= input; i++) {
-        res.push(res[i - 1] + res[i - 2]);
-    }
-    return res;
+  const res: number[] = [0, 1];
+  for (let i = 2; i <= input; i++) {
+    res.push(res[i - 1] + res[i - 2]);
+  }
+  return res;
 }
 
 console.log(rangeFabionacci(0));

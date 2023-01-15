@@ -1,4 +1,4 @@
-import {Queue} from './queue';
+import { Queue } from './queue';
 
 describe('Data structure: Queue', () => {
   it('should enqueue value to queue', () => {

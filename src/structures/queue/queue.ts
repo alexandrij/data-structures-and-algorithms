@@ -1,4 +1,4 @@
-import {LinkedList} from '../linked-list/linked-list';
+import { LinkedList } from '../linked-list/linked-list';
 
 export class Queue<T> {
   private _data: LinkedList = new LinkedList<T>();
@@ -11,12 +11,12 @@ export class Queue<T> {
     this._data.add(value);
   }
 
-  public dequeue(): T|undefined {
+  public dequeue(): T | undefined {
     const node = this._data.removeHead();
     return node ? node.value : undefined;
   }
 
-  public toString(callback?: ((value: T) => string)): string {
+  public toString(callback?: (value: T) => string): string {
     return this._data.toString(callback);
   }
 }

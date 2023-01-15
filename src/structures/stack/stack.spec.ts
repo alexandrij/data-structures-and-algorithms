@@ -1,4 +1,4 @@
-import {Stack} from './stack';
+import { Stack } from './stack';
 
 describe('Data structures: Stack', () => {
   it('should peek element from stack', () => {

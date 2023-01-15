@@ -1,4 +1,4 @@
-import {MinHeap} from '../heap/min-heap';
+import { MinHeap } from '../heap/min-heap';
 
 export class PriorityQueue<T> {
   private _data: MinHeap<T> = new MinHeap();
@@ -7,7 +7,7 @@ export class PriorityQueue<T> {
     return this._data.size;
   }
 
-  public peek(): T|undefined {
+  public peek(): T | undefined {
     return this._data.peek();
   }
 
@@ -15,7 +15,7 @@ export class PriorityQueue<T> {
     this._data.add(item);
   }
 
-  public dequeue(): T|undefined {
+  public dequeue(): T | undefined {
     return this._data.poll();
   }
 

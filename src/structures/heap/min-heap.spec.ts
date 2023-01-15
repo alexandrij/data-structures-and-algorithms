@@ -1,4 +1,4 @@
-import {MinHeap} from './min-heap';
+import { MinHeap } from './min-heap';
 
 describe('Data structure: MinHeap', () => {
   it('should add, remove and poll element to heap', () => {

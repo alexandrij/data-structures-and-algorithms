@@ -1,4 +1,4 @@
-import {LinkedList} from './linked-list';
+import { LinkedList } from './linked-list';
 
 describe('Data structure: LinkedList', () => {
   it('should add node to linked list', () => {

@@ -1,26 +1,26 @@
-export interface LinkedNode<T = any> {
+export interface LinkedNode<T> {
   next?: LinkedNode<T>;
   value: T;
 }
 
-export class LinkedList<T = any> {
-  get head(): LinkedNode|undefined {
+export class LinkedList<T> {
+  get head(): LinkedNode<T> | undefined {
     return this._head;
   }
-  private _head?: LinkedNode;
+  private _head?: LinkedNode<T>;
 
-  get tail(): LinkedNode|undefined {
+  get tail(): LinkedNode<T> | undefined {
     return this._tail;
   }
-  private _tail?: LinkedNode;
+  private _tail?: LinkedNode<T>;
 
   get size(): number {
     return this._size;
   }
-  private _size: number = 0;
+  private _size = 0;
 
   public add(value: T): void {
-    const node: LinkedNode = {
+    const node: LinkedNode<T> = {
       next: undefined,
       value,
     };
@@ -38,8 +38,8 @@ export class LinkedList<T = any> {
     this._size++;
   }
 
-  public remove(value: T): LinkedNode|undefined {
-    let removedNode: LinkedNode|undefined;
+  public remove(value: T): LinkedNode<T> | undefined {
+    let removedNode: LinkedNode<T> | undefined;
     let currentNode = this._head;
 
     if (!currentNode) {
@@ -69,7 +69,7 @@ export class LinkedList<T = any> {
     return removedNode;
   }
 
-  public removeHead(): LinkedNode|undefined {
+  public removeHead(): LinkedNode<T> | undefined {
     const removedHead = this._head;
 
     if (removedHead) {
@@ -83,8 +83,7 @@ export class LinkedList<T = any> {
     return removedHead;
   }
 
-  public toString(callback: (value: any) => string = (v: any) => String(v)):
-      string {
+  public toString(callback: (value: T) => string = (v: T) => String(v)): string {
     let str = '';
     let i = 0;
     let currentNode = this._head;

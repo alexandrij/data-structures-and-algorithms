@@ -1,4 +1,4 @@
-import {MapEntry} from './map-entry';
+import { MapEntry } from './map-entry';
 
 interface MapCollection<K, V> {
   objects: Array<MapEntry<K, V>>;
@@ -14,13 +14,13 @@ export class Map<K, V> {
   get size(): number {
     return this._size;
   }
-  private _size: number = 0;
+  private _size = 0;
 
   private _head?: MapEntry<K, V>;
 
   private _tail?: MapEntry<K, V>;
 
-  private _objectHash: symbol = Symbol('Hash(map)');
+  private _objectHash = Symbol('Hash(map)');
 
   public set(key: K, value: V): void {
     const keyHash = this._hash(key);
@@ -28,8 +28,7 @@ export class Map<K, V> {
     const objectHash = this._objectHash;
 
     if (keyHash === null) {
-      if (typeof key[objectHash] === 'number' &&
-          this._data.objects[key[objectHash]] instanceof MapEntry) {
+      if (typeof key[objectHash] === 'number' && this._data.objects[key[objectHash]] instanceof MapEntry) {
         entry = this._data.objects[key[objectHash]];
         entry.value = value;
         return;
@@ -67,13 +66,12 @@ export class Map<K, V> {
     }
   }
 
-  public get(key: K): V|undefined {
+  public get(key: K): V | undefined {
     const keyHash = this._hash(key);
     const objectHash = this._objectHash;
 
     if (keyHash === null) {
-      if (typeof key[objectHash] === 'number' &&
-          this._data.objects[key[objectHash]] instanceof MapEntry) {
+      if (typeof key[objectHash] === 'number' && this._data.objects[key[objectHash]] instanceof MapEntry) {
         return this._data.objects[key[objectHash]].value;
       }
     } else {
@@ -88,11 +86,9 @@ export class Map<K, V> {
     const objectHash = this._objectHash;
 
     if (keyHash === null) {
-      return (
-          typeof key[objectHash] === 'number' &&
-          this._data.objects[key[objectHash]] instanceof MapEntry);
+      return typeof key[objectHash] === 'number' && this._data.objects[key[objectHash]] instanceof MapEntry;
     } else {
-      return (this._data.primitives[keyHash] instanceof MapEntry);
+      return this._data.primitives[keyHash] instanceof MapEntry;
     }
   }
 
@@ -102,8 +98,7 @@ export class Map<K, V> {
     let entry: MapEntry<K, V>;
 
     if (keyHash === null) {
-      if (typeof key[objectHash] === 'number' &&
-          this._data.objects[key[objectHash]] instanceof MapEntry) {
+      if (typeof key[objectHash] === 'number' && this._data.objects[key[objectHash]] instanceof MapEntry) {
         entry = this._data.objects[key[objectHash]];
         delete this._data.objects[key[objectHash]];
         delete entry.key[objectHash];
@@ -141,15 +136,15 @@ export class Map<K, V> {
   }
 
   public forEach(callback: (key: K, value: V) => void): void {
-     let entry = this._head;
+    let entry = this._head;
 
-     while ((entry instanceof MapEntry)) {
-       callback(entry.key, entry.value);
-       entry = entry.next;
-     }
+    while (entry instanceof MapEntry) {
+      callback(entry.key, entry.value);
+      entry = entry.next;
+    }
   }
 
-  private _hash(key: K): string|null {
+  private _hash(key: K): string | null {
     const strKey = String(key);
     if (key === undefined || key === null) {
       return `I___${strKey}`;

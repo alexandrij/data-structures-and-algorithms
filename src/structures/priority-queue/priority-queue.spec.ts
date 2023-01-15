@@ -1,5 +1,4 @@
-
-import {PriorityQueue} from './priority-queue';
+import { PriorityQueue } from './priority-queue';
 
 describe('Data structure: PriorityQueue', () => {
   it('should enqueue, dequeue element to queue', () => {

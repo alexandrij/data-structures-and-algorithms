@@ -4,7 +4,7 @@ export class Stack<T> {
   get size(): number {
     return this._size;
   }
-  private _size: number = 0;
+  private _size = 0;
 
   public push(value: T): T {
     this.data[this.size] = value;
@@ -26,8 +26,7 @@ export class Stack<T> {
     return this.data[this.size - 1];
   }
 
-  public toString(callback: (value: T) => string = (v: T) => String(v)):
-      string {
+  public toString(callback: (value: T) => string = (v: T) => String(v)): string {
     let str = '';
     let i = 0;
 
