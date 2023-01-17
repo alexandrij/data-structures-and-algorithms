@@ -1,0 +1,3 @@
+describe('search insert position', () => {
+
+});
