@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "esm": true
+  },
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -25,9 +28,5 @@
       "node",
       "jest"
     ]
-  },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.spec.ts"
-  ]
+  }
 }

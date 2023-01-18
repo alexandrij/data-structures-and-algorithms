@@ -1,7 +1,7 @@
 import { LinkedList } from '../linked-list/linked-list';
 
 export class Queue<T> {
-  private _data: LinkedList = new LinkedList<T>();
+  private _data: LinkedList<T> = new LinkedList<T>();
 
   get size(): number {
     return this._data.size;
