@@ -1,4 +1,4 @@
-import { Queue } from '../queue/queue';
+import { Queue } from '../queue';
 
 export class Node<T> {
   data: T;
